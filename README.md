@@ -3,7 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![JavaScript](https://img.shields.io/badge/Vanilla-JavaScript-F7DF1E?logo=javascript&logoColor=black)](https://developer.mozilla.org/es/docs/Web/JavaScript)
 [![HTML5 & CSS3](https://img.shields.io/badge/HTML5_%26_CSS3-Modern_UI-E34F26?logo=html5&logoColor=white)](https://developer.mozilla.org/es/docs/Web/HTML)
-[![Privacy First](https://img.shields.io/badge/Privacy-100%25_Client_Side-success)](https://github.com/luchonicolini/Cambio_Taman-o)
+[![Privacy First](https://img.shields.io/badge/Privacy-100%25_Client_Side-success)](https://github.com/luchonicolini/Ecommerce-image-resizer)
 
 <br/>
 
@@ -71,8 +71,8 @@ No requiere instalación de dependencias, Node.js ni configuración previa de se
 
 1. **Clonar el repositorio**:
    ```bash
-   git clone https://github.com/luchonicolini/Cambio_Taman-o.git
-   cd Cambio_Taman-o
+   git clone https://github.com/luchonicolini/Ecommerce-image-resizer.git
+   cd Ecommerce-image-resizer
    ```
 
 2. **Abrir en el navegador**:
