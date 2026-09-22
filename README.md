@@ -47,7 +47,7 @@ Cuando se obtienen fotos de catálogos o proveedores con medidas desproporcionad
 
 ---
 
-## 🛠️ Tecnologías Utilizadas
+## Tecnologías Utilizadas
 
 - **HTML5 Semántico**: Estructura accesible y modular.
 - **CSS3 Moderno**: Variables personalizadas, CSS Grid, Flexbox y diseño responsivo adaptado a dispositivos móviles y escritorio.
