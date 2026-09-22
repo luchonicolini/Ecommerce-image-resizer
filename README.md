@@ -1,4 +1,4 @@
-# PixelFit 1200 — Smart Image Resizer & Background Remover ⚡️
+# PixelFit 1200 — Smart Image Resizer & Background Remover 
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![JavaScript](https://img.shields.io/badge/Vanilla-JavaScript-F7DF1E?logo=javascript&logoColor=black)](https://developer.mozilla.org/es/docs/Web/JavaScript)
@@ -11,7 +11,7 @@ Procesa tus imágenes directamente en el navegador del usuario utilizando la **A
 
 ---
 
-## 🎯 El Problema que Resuelve
+##  El Problema que Resuelve
 
 Muchas plataformas de venta online y CMS exigen rigurosamente que las imágenes tengan dimensiones exactas de **1200 × 1200 px**. 
 Cuando se obtienen fotos de catálogos o proveedores con medidas desproporcionadas (por ejemplo: `1088 × 1200 px`, `800 × 1000 px`, etc.), las plataformas rechazan la subida con errores molestos.
@@ -23,25 +23,25 @@ Cuando se obtienen fotos de catálogos o proveedores con medidas desproporcionad
 
 ---
 
-## ✨ Características Principales
+##  Características Principales
 
-- 🚀 **100% Client-Side & Privacidad Total**: Todo el procesamiento se realiza localmente en la máquina del usuario; tus archivos nunca tocan la nube.
-- 📐 **3 Modos de Adaptación a 1200 × 1200 px**:
+-  **100% Client-Side & Privacidad Total**: Todo el procesamiento se realiza localmente en la máquina del usuario; tus archivos nunca tocan la nube.
+-  **3 Modos de Adaptación a 1200 × 1200 px**:
   - **Rellenar bordes (Sin recortar)**: Mantiene el producto al 100% de su escala original y rellena los márgenes faltantes.
   - **Recorte Inteligente (Cover)**: Llena todo el marco de 1200 × 1200 px recortando armónicamente los excesos.
   - **Estirar (Stretch)**: Fuerza la adaptación dimensional.
-- 🪄 **Eliminador Inteligente de Fondo Blanco (White Background Remover)**:
+-  **Eliminador Inteligente de Fondo Blanco (White Background Remover)**:
   - Algoritmo de *Flood Fill* perimetral con suavizado *anti-aliasing* que elimina el fondo blanco exterior del producto sin alterar los detalles blancos internos (ideal para tecnología, calzado y electrodomésticos).
   - Selector de sensibilidad y tolerancia ajustable en tiempo real.
-- 🎨 **Personalización de Fondo**:
+- **Personalización de Fondo**:
   - Fondo Transparente (cuadrícula de control visual).
   - Fondo Blanco o Negro puro.
   - Fondo desenfocado estético (*Blur Effect* extraído de la propia imagen).
   - Selector libre de color HEX.
-- 📦 **Exportación Flexible & Descarga Masiva**:
+-  **Exportación Flexible & Descarga Masiva**:
   - Exportación en formatos **PNG** (óptimo para transparencias), **JPG** (con compresor de calidad web) y **WebP**.
   - Descarga de todas las imágenes convertidas empaquetadas en un único archivo `.zip` mediante **JSZip**.
-- 📋 **Comodidad de Entrada**:
+-  **Comodidad de Entrada**:
   - Arrastrar y soltar (*Drag & Drop* múltiple).
   - Pegar directo desde el portapapeles con `Cmd + V` / `Ctrl + V`.
 
@@ -59,7 +59,7 @@ Cuando se obtienen fotos de catálogos o proveedores con medidas desproporcionad
 
 ---
 
-## 🚀 Instalación y Uso Rápido
+##  Instalación y Uso Rápido
 
 No requiere instalación de dependencias, Node.js ni configuración previa de servidores.
 
@@ -82,7 +82,7 @@ No requiere instalación de dependencias, Node.js ni configuración previa de se
 
 ---
 
-## 📸 Casos de Uso
+##  Casos de Uso
 
 - **E-commerce Sellers**: Vendedores de Mercado Libre, Amazon, Tiendanube y WooCommerce que necesitan cumplir los estándares de publicación de catálogo.
 - **Diseñadores & Desarrolladores Web**: Estandarización rápida de assets gráficos antes de integrarlos a maquetas o código.
@@ -90,7 +90,7 @@ No requiere instalación de dependencias, Node.js ni configuración previa de se
 
 ---
 
-## 🤝 Contribuciones
+##  Contribuciones
 
 ¡Las contribuciones son bienvenidas! Si deseas mejorar el algoritmo de recorte, añadir nuevos formatos o enriquecer la interfaz:
 
