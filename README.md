@@ -5,6 +5,12 @@
 [![HTML5 & CSS3](https://img.shields.io/badge/HTML5_%26_CSS3-Modern_UI-E34F26?logo=html5&logoColor=white)](https://developer.mozilla.org/es/docs/Web/HTML)
 [![Privacy First](https://img.shields.io/badge/Privacy-100%25_Client_Side-success)](https://github.com/luchonicolini/Cambio_Taman-o)
 
+<br/>
+
+<p align="center">
+  <img src="assets/preview.png" alt="PixelFit 1200 Vista Previa" width="850" style="border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);" />
+</p>
+
 **PixelFit 1200** es una herramienta web ligera, moderna y ultrarrápida diseñada para resolver uno de los problemas más comunes en comercio electrónico (Mercado Libre, Shopify, Amazon, Tiendanube) y plataformas web: **la exigencia estricta de imágenes en dimensiones exactas cuadradas de 1200 × 1200 px con fondo blanco o transparente**.
 
 Procesa tus imágenes directamente en el navegador del usuario utilizando la **API de Canvas de HTML5**, garantizando una privacidad absoluta (las imágenes nunca se suben a ningún servidor externo).
