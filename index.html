@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PixelFit 1200 — Adaptador de Imágenes a 1200 × 1200 px</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <!-- JSZip para descargas masivas en ZIP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+</head>
+<body>
+  <div class="app-container">
+    <header class="app-header">
+      <div class="logo-area">
+        <div class="logo-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+            <circle cx="8.5" cy="8.5" r="1.5"></circle>
+            <polyline points="21 15 16 10 5 21"></polyline>
+          </svg>
+        </div>
+        <div>
+          <h1>PixelFit 1200</h1>
+          <p class="subtitle">Adapta tus imágenes al tamaño exacto de <strong>1200 × 1200 px</strong> sin complicaciones</p>
+        </div>
+      </div>
+      <div class="badge-target">
+        <span class="dot"></span>
+        Destino: 1200 × 1200 px
+      </div>
+    </header>
+
+    <main class="main-content">
+      <!-- Zona de subida / Dropzone -->
+      <section class="upload-section" id="dropzone">
+        <input type="file" id="fileInput" accept="image/*" multiple hidden>
+        <div class="dropzone-inner">
+          <div class="upload-icon-circle">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="17 8 12 3 7 8"></polyline>
+              <line x1="12" y1="3" x2="12" y2="15"></line>
+            </svg>
+          </div>
+          <h3>Arrastra tus imágenes aquí</h3>
+          <p>o <button type="button" class="btn-link" id="btnBrowse">explora tus archivos</button> (también puedes pegar con <kbd>Cmd</kbd> / <kbd>Ctrl</kbd> + <kbd>V</kbd>)</p>
+          <span class="upload-hint">Soporta JPG, PNG, WebP, AVIF — Múltiples archivos a la vez</span>
+        </div>
+      </section>
+
+      <!-- Panel de trabajo (oculto hasta cargar imágenes) -->
+      <section class="workspace-section" id="workspace" style="display: none;">
+        <!-- Controles Globales -->
+        <div class="controls-panel card">
+          <div class="controls-header">
+            <h3>Ajustes de Adaptación</h3>
+            <div class="global-actions">
+              <button id="btnClearAll" class="btn btn-secondary btn-sm">Limpiar todo</button>
+              <button id="btnDownloadAllPng" class="btn btn-secondary btn-sm" title="Descargar todas las imágenes convertidas a PNG">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                </svg>
+                Todo en PNG
+              </button>
+              <button id="btnDownloadAll" class="btn btn-primary btn-sm">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                Descargar Todas (<span id="countBadge">0</span>)
+              </button>
+            </div>
+          </div>
+
+          <div class="settings-grid">
+            <div class="setting-item">
+              <label class="setting-label">Modo de ajuste</label>
+              <div class="mode-selector">
+                <button class="mode-btn active" data-mode="contain" title="Mantiene la imagen completa y rellena los márgenes para llegar a 1200x1200">
+                  <strong>Rellenar bordes</strong>
+                  <span>(No recorta nada)</span>
+                </button>
+                <button class="mode-btn" data-mode="cover" title="Rellena todo el cuadrado recortando proporcionalmente lo sobrante">
+                  <strong>Recorte inteligente</strong>
+                  <span>(Llena el 100%)</span>
+                </button>
+                <button class="mode-btn" data-mode="stretch" title="Estira o encoge la imagen para ajustarla exactamente">
+                  <strong>Estirar</strong>
+                  <span>(Forzar relación)</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="setting-item" id="backgroundOptions">
+              <label class="setting-label">Color o fondo de los márgenes</label>
+              <div class="bg-selector">
+                <label class="bg-choice">
+                  <input type="radio" name="bgType" value="transparent" checked>
+                  <span class="color-preview bg-transparent-grid"></span>
+                  <span>Transparente</span>
+                </label>
+                <label class="bg-choice">
+                  <input type="radio" name="bgType" value="#ffffff">
+                  <span class="color-preview" style="background: #ffffff; border: 1px solid #ccc;"></span>
+                  <span>Blanco</span>
+                </label>
+                <label class="bg-choice">
+                  <input type="radio" name="bgType" value="#000000">
+                  <span class="color-preview" style="background: #000000;"></span>
+                  <span>Negro</span>
+                </label>
+                <label class="bg-choice">
+                  <input type="radio" name="bgType" value="blur">
+                  <span class="color-preview bg-blur-sample"></span>
+                  <span>Fondo Blur (Desenfocado)</span>
+                </label>
+                <label class="bg-choice custom-picker-label">
+                  <input type="radio" name="bgType" value="custom" id="radioCustom">
+                  <input type="color" id="customColorInput" value="#f3f4f6">
+                  <span>Color libre</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="setting-item format-item">
+              <div class="format-controls">
+                <div>
+                  <label class="setting-label" for="exportFormat">Formato de salida</label>
+                  <select id="exportFormat" class="select-input">
+                    <option value="image/png">PNG (Ideal para transparencias)</option>
+                    <option value="image/jpeg">JPG (Recomendado para web)</option>
+                    <option value="image/webp">WebP (Ultraligero y moderno)</option>
+                  </select>
+                </div>
+                <div id="qualityControlContainer" style="opacity: 0.4; pointer-events: none;">
+                  <label class="setting-label" for="exportQuality">Calidad: <span id="qualityVal">92%</span></label>
+                  <input type="range" id="exportQuality" min="60" max="100" value="92" class="range-input">
+                </div>
+              </div>
+            </div>
+
+            <!-- Nueva sección: Quitar Fondo Blanco (Magia Transparente) -->
+            <div class="setting-item full-width-setting">
+              <div class="remove-bg-box">
+                <div class="remove-bg-header">
+                  <div class="toggle-wrapper">
+                    <label class="switch">
+                      <input type="checkbox" id="chkRemoveWhiteBg">
+                      <span class="slider round"></span>
+                    </label>
+                    <div>
+                      <strong class="toggle-title">✨ Quitar Fondo Blanco / Convertir a Transparente</strong>
+                      <p class="toggle-desc">Detecta el fondo blanco o casi blanco alrededor de tu producto (como la PS5) y lo vuelve 100% transparente.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="remove-bg-controls" id="removeBgControls" style="display: none;">
+                  <div class="tolerance-slider-row">
+                    <label for="toleranceSlider">Sensibilidad / Tolerancia del blanco: <strong id="toleranceVal">25</strong></label>
+                    <input type="range" id="toleranceSlider" min="5" max="80" value="25" class="range-input">
+                  </div>
+                  <span class="help-text">Sube la tolerancia si quedan restos de blanco en los bordes, o bájala si la consola pierde algún detalle blanco.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lista de elementos e imágenes cargadas -->
+        <div class="gallery-header">
+          <h3>Imágenes preparadas</h3>
+          <span class="gallery-info" id="galleryCount">0 imágenes</span>
+        </div>
+
+        <div class="cards-grid" id="cardsGrid">
+          <!-- Tarjetas generadas dinámicamente -->
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <p>Procesamiento 100% en tu navegador. Tus fotos nunca salen de tu ordenador ni se suben a internet.</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
